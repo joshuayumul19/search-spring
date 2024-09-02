@@ -1,0 +1,104 @@
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.card {
+	padding: 2em;
+}
+
+#app {
+	margin: 0 auto;
+}
+
+.search-page {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.uk-card-body {
+	padding: 20px;
+}
+.uk-card-title {
+	font-size: 1.25rem;
+	margin: 0;
+}
+.uk-heading-primary {
+	margin-bottom: 20px;
+}
+.uk-form-large {
+	width: calc(100% - 150px);
+}
+.uk-button-primary {
+	font-size: 1rem;
+}
+.uk-button-default {
+	font-size: 1rem;
+}
+.uk-text-meta {
+	margin: 0;
+}
+.uk-grid > * {
+	margin-bottom: 20px;
+}
+.title,
+.sale-price,
+.view-details,
+.page-label {
+	color: #3a23ad;
+	font-weight: bold;
+}
+.product-card {
+	border-radius: 24px;
+}
+.product-image {
+	border-radius: 16px;
+}
+.product-name {
+	font-size: 1rem;
+	font-weight: bolder;
+	color: gray !important;
+}
+.sale-badge {
+	background-color: rgba(58, 35, 173, 0.9);
+	padding: 10px 20px;
+	border-radius: 20px;
+}
+.primary-button {
+	color: white;
+	background-color: #3a23ad;
+	cursor: pointer;
+}
+.primary-button:hover {
+	color: white;
+	background-color: rgba(58, 35, 173, 0.9);
+}
+.secondary-button {
+	color: #3a23ad;
+	border: 1px solid #3a23ad;
+	cursor: pointer;
+}
+.secondary-button:hover {
+	color: white;
+	background-color: #3a23ad;
+}
+.tertiary-button {
+	color: #3a23ad;
+	border: 1px solid #3a23ad;
+	cursor: pointer;
+}
+.tertiary-button:hover {
+	color: rgba(58, 35, 173, 0.9);
+	border-color: rgba(58, 35, 173, 0.9);
+}
+.sale-price {
+	font-size: 1.5rem;
+}
+.old-price {
+	font-size: 1rem;
+}
