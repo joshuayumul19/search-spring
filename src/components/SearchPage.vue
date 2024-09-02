@@ -3,9 +3,15 @@
 		<h1 class="uk-heading-primary title uk-text-center">Unlock the World of Style with Our Product Search</h1>
 		<div class="uk-margin">
 			<div class="uk-flex uk-flex-middle">
-				<input v-model="query" @keyup.enter="searchProducts" class="uk-input uk-form-large" type="text" placeholder="Search for products using Color, Type, Brand..." />
-				<button @click="searchProducts" class="uk-button uk-button-primary uk-button-large uk-margin-left primary-button">Search</button>
+				<input v-model="query" @keyup.enter="searchProducts(true)" class="uk-input uk-form-large" type="text" placeholder="Search for products using Color, Type, Brand..." />
+				<button @click="searchProducts(true)" class="uk-button uk-button-primary uk-button-large uk-margin-left primary-button">Search</button>
 			</div>
+		</div>
+
+		<div v-if="products.length" class="uk-margin-top uk-text-center uk-margin">
+			<button @click="previousPage" :disabled="currentPage === 1" class="uk-button uk-button-default secondary-button">Previous</button>
+			<span class="uk-padding uk-padding-remove-vertical page-label">Page {{ currentPage }}</span>
+			<button @click="nextPage" :disabled="!hasMoreResults" class="uk-button uk-button-default secondary-button">Next</button>
 		</div>
 
 		<div v-if="products.length" class="uk-grid uk-grid-match uk-grid-small uk-child-width-1-4@s uk-margin-top">
@@ -58,8 +64,12 @@ const hasMoreResults = ref(false);
 const selectedProduct = ref(null);
 const defaultImage = "src/public/assets/placeholder.png";
 
-const searchProducts = async () => {
+const searchProducts = async (isNewSearch = false) => {
 	try {
+		if (isNewSearch) {
+			currentPage.value = 1;
+		}
+
 		const response = await axios.get("http://api.searchspring.net/api/search/search.json", {
 			params: {
 				siteId: "scmq7n",
