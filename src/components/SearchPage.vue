@@ -58,7 +58,7 @@
 import ProductInfoModal from "./ProductInfoModal.vue";
 import { ref, onMounted } from "vue";
 import UIkit from "uikit";
-import axios from "axios";
+import { searchProducts as fetchProducts } from "../services/api";
 
 const query = ref("");
 const products = ref([]);
@@ -68,36 +68,13 @@ const selectedProduct = ref(null);
 const defaultImage = "src/public/assets/placeholder.png";
 
 const searchProducts = async (isNewSearch = false) => {
-	try {
-		if (isNewSearch) {
-			currentPage.value = 1;
-		}
-
-		const response = await axios.get("https://api.searchspring.net/api/search/search.json", {
-			params: {
-				siteId: "scmq7n",
-				q: query.value,
-				resultsFormat: "native",
-				page: currentPage.value,
-			},
-		});
-
-		products.value = response.data.results.map((item) => ({
-			id: item.id,
-			name: item.name,
-			price: item.price,
-			msrp: item.msrp,
-			thumbnailImageUrl: item.thumbnailImageUrl,
-			imageUrl: item.imageUrl,
-			on_sale: item.on_sale[0],
-			description: item.description,
-			quantity_available: item.quantity_available[0],
-		}));
-
-		hasMoreResults.value = response.data.pagination.totalPages > currentPage.value;
-	} catch (error) {
-		console.error("Error fetching products:", error);
+	if (isNewSearch) {
+		currentPage.value = 1;
 	}
+
+	const result = await fetchProducts(query.value, currentPage.value);
+	products.value = result.products;
+	hasMoreResults.value = result.hasMoreResults;
 };
 
 const nextPage = () => {
@@ -131,6 +108,7 @@ const viewDetailsModal = async (product) => {
 const handleImageError = (imageUrl, event) => {
 	event.target.src = imageUrl ?? defaultImage; // Replace broken image with default
 };
+
 // Call searchProducts when the component is mounted
 onMounted(() => {
 	searchProducts();
