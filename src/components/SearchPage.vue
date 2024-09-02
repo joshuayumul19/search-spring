@@ -4,7 +4,7 @@
 		<div class="uk-margin">
 			<div class="uk-flex uk-flex-middle">
 				<input v-model="query" @keyup.enter="searchProducts(true)" class="uk-input uk-form-large" type="text" placeholder="Search for products using Color, Type, Brand..." />
-				<button @click="searchProducts(true)" class="uk-button uk-button-primary uk-button-large uk-margin-left primary-button">Search</button>
+				<button @click="searchProducts(true)" class="uk-button uk-button-primary uk-button-large primary-button">Search</button>
 			</div>
 		</div>
 		<div v-if="!products.length" class="uk-margin-top uk-text-center uk-margin">
