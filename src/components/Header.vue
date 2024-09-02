@@ -1,14 +1,14 @@
 <template>
 	<nav class="uk-navbar-container uk-navbar-transparent navbar" uk-navbar>
 		<div class="uk-navbar-left">
-			<a class="uk-navbar-item uk-logo" href="#">
+			<a class="uk-navbar-item uk-logo" @click="clickHome">
 				<img src="/src/public/assets/logo.png" alt="Logo" width="150" />
 			</a>
 		</div>
 
 		<div class="uk-navbar-right">
 			<ul class="uk-navbar-nav">
-				<li class="uk-active"><a href="#">Home</a></li>
+				<li class="uk-active"><a @click="clickHome">Home</a></li>
 				<li>
 					<a href="#">Shop</a>
 					<div class="uk-navbar-dropdown">
@@ -36,3 +36,9 @@
 	font-weight: bold;
 }
 </style>
+
+<script setup>
+const clickHome = () => {
+	window.location.reload();
+};
+</script>
