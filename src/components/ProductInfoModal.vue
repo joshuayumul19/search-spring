@@ -2,7 +2,7 @@
 	<div id="product-info-modal" uk-modal>
 		<div class="uk-modal-dialog uk-modal-body uk-width-3-5">
 			<button class="uk-modal-close-default" type="button" uk-close></button>
-			<div class="uk-grid uk-child-width-1-2 uk-grid-match">
+			<div class="uk-grid uk-child-width-1-2@m uk-grid-match">
 				<div>
 					<img :src="details.imageUrl" alt="Product Image" height="300" width="300" />
 				</div>

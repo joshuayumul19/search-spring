@@ -1,20 +1,23 @@
 <template>
 	<div class="search-page uk-container uk-margin-top">
-		<h1 class="uk-heading-primary title uk-text-center">Unlock the World of Style with Our Product Search</h1>
+		<h1 class="uk-heading-primary title uk-text-center">Unlock the world of style with our product search</h1>
 		<div class="uk-margin">
 			<div class="uk-flex uk-flex-middle">
 				<input v-model="query" @keyup.enter="searchProducts(true)" class="uk-input uk-form-large" type="text" placeholder="Search for products using Color, Type, Brand..." />
 				<button @click="searchProducts(true)" class="uk-button uk-button-primary uk-button-large uk-margin-left primary-button">Search</button>
 			</div>
 		</div>
-
+		<div v-if="!products.length" class="uk-margin-top uk-text-center uk-margin">
+			<span uk-spinner="ratio: 4.5"></span>
+			<h1 class="title">Fetching Products</h1>
+		</div>
 		<div v-if="products.length" class="uk-margin-top uk-text-center uk-margin">
 			<button @click="previousPage" :disabled="currentPage === 1" class="uk-button uk-button-default secondary-button">Previous</button>
 			<span class="uk-padding uk-padding-remove-vertical page-label">Page {{ currentPage }}</span>
 			<button @click="nextPage" :disabled="!hasMoreResults" class="uk-button uk-button-default secondary-button">Next</button>
 		</div>
 
-		<div v-if="products.length" class="uk-grid uk-grid-match uk-grid-small uk-child-width-1-4@s uk-margin-top">
+		<div v-if="products.length" class="uk-grid uk-grid-match uk-grid-small uk-child-width-1-4@l uk-child-width-1-3@m uk-child-width-1-2@s uk-margin-top">
 			<div v-for="product in products" :key="product.id">
 				<div class="uk-card uk-card-default uk-card-hover uk-card-body product-card">
 					<div v-if="product.on_sale === 'Yes'" class="uk-card-badge uk-label sale-badge">Sale</div>
